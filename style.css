@@ -1,8 +1,29 @@
 body {
     background-color: oldlace;
 }
-#charBio {
+.charBio {
     background-color: lightblue;
     display: inline-block;
 
+}
+#carousel {
+    display: flex;
+}
+#imgContainer div {
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+}
+#imgContainer div:first-of-type {
+    display: block;
+}
+#nextBtn {
+    width: 20px;
+    height: 20px;
+    background-color: gray;
+}
+#prevBtn {
+    width: 20px;
+    height: 20px;
+    background-color: gray;
 }
