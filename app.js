@@ -8,8 +8,13 @@ $('form').on('submit',(event) => {
         url: 'https://rickandmortyapi.com/api/character/?name=' + userInput
     }).then(
         (data) => {
-            $('#charBio').html(`<img src="${data.results[0].image}" width="200px"`)
-            
+            for (let i = 0; i < data.results.length; i++) {
+            const $charBio = $('<div id=charBio>')
+            $charBio.html(data.results[i].name)
+            $charBio.html(`<img src="${data.results[i].image}" width="100px">`)
+            $('body').append($charBio)
+            console.log(data.results[i].name)
+            }
             console.log(data.results[0].image)
         }
     )
