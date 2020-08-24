@@ -1,6 +1,7 @@
 console.log('linked')
 $('form').on('submit',(event) => {
     event.preventDefault();
+    $('#container').empty()
     const userInput = $('input').val()
     // console.log(userInput)
 
@@ -12,7 +13,7 @@ $('form').on('submit',(event) => {
             const $charBio = $('<div id=charBio>')
             $charBio.html(data.results[i].name)
             $charBio.html(`<img src="${data.results[i].image}" width="100px">`)
-            $('body').append($charBio)
+            $('#container').append($charBio)
             console.log(data.results[i].name)
             }
             console.log(data.results[0].image)
