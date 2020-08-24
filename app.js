@@ -11,8 +11,10 @@ $('form').on('submit',(event) => {
         (data) => {
             for (let i = 0; i < data.results.length; i++) {
             const $charBio = $('<div class=charBio>')
-            $charBio.html(data.results[i].name)
+            const $charName = $('<h2>')
+            $charName.html(data.results[i].name)
             $charBio.html(`<img src="${data.results[i].image}">`)
+            $charBio.append($charName)
             $('#imgContainer').append($charBio)
             console.log(data.results[i].name)
             }
