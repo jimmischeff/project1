@@ -1,6 +1,7 @@
 console.log('linked')
 $('form').on('submit',(event) => {
     event.preventDefault();
+    $('#anotherDiv').css('display','flex')
     $('#imgContainer').empty()
     const userInput = $('input').val()
     // console.log(userInput)
@@ -36,12 +37,13 @@ $('form').on('submit',(event) => {
             $('#prevBtn').on('click',() => {
                 console.log('next button')
                 $('#imgContainer').children().eq(currentImgIndex).css('display','none')
-                if(currentImgIndex < highestIndex) {
+                if(currentImgIndex > 0) {
                     currentImgIndex--
                 } else {
-                    currentImgIndex = 0;
+                    currentImgIndex = highestIndex;
                 }
                 $('#imgContainer').children().eq(currentImgIndex).css('display','block')
+                console.log(currentImgIndex)
             });
         }
     )

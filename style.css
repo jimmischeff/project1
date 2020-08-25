@@ -1,5 +1,21 @@
 body {
-    background-color: oldlace;
+    background-color: greenyellow;
+}
+#anotherDiv {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+}
+h1{
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+form {
+    text-align: center;
+    margin: 50px;
+    
 }
 .charBio {
     background-color: lightblue;
@@ -8,6 +24,8 @@ body {
 }
 #carousel {
     display: flex;
+    float: left;
+    margin: 0 auto;
 }
 #imgContainer div {
     width: 100%;
@@ -21,9 +39,20 @@ body {
     width: 20px;
     height: 20px;
     background-color: gray;
+    margin: 50% 0 0 0;
+    text-align: right;
+    font-weight: bolder;
+
 }
 #prevBtn {
     width: 20px;
     height: 20px;
     background-color: gray;
+    margin: 50% 0 0 0;
+    font-weight: bolder;
+}
+.acid {
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
 }
