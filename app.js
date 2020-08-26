@@ -14,7 +14,7 @@ $('form').on('submit',(event) => {
             const $charBio = $('<div class=charBio>')
             const $charName = $('<h2>')
             $charName.html(data.results[i].name)
-            $charBio.html(`<img src="${data.results[i].image}">`)
+            $charBio.html(`<img src="${data.results[i].image}">`).draggable();
             $charBio.append($charName)
             $('#imgContainer').append($charBio)
             console.log(data.results[i].name)
@@ -45,6 +45,12 @@ $('form').on('submit',(event) => {
                 $('#imgContainer').children().eq(currentImgIndex).css('display','block')
                 console.log(currentImgIndex)
             });
+            $('body').append('<img class=acid src="https://i2.wp.com/rjwriting.ink/wp-content/uploads/2020/05/img_1250.png?w=1334&ssl=1"/>')
+                $('.acid').droppable({
+                    drop: function() {
+                        $('#imgContainer').children().eq(currentImgIndex).remove()
+                    }
+                })
         }
     )
 })
