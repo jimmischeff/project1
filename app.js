@@ -10,6 +10,15 @@ $('form').on('submit',(event) => {
         url: 'https://rickandmortyapi.com/api/character/?name=' + userInput
     }).then(
         (data) => {
+            let currentImgIndex=0;
+            let highestIndex=$('.charBio').length-1;
+            
+            $('.acid').droppable({
+                drop: function() {
+                    $('#imgContainer').children().eq(currentImgIndex).remove()
+                    currentImgIndex++
+                    }
+                })
             for (let i = 0; i < data.results.length; i++) {
             const $charBio = $('<div class=charBio>')
             const $charName = $('<h2>')
@@ -19,11 +28,8 @@ $('form').on('submit',(event) => {
             $('#imgContainer').append($charBio)
             console.log(data.results[i].name)
             }
-            console.log(data.results[0].image)
 
-            let currentImgIndex=0;
-            let highestIndex=$('.charBio').length-1;
-            
+
             $('#nextBtn').on('click',() => {
                 console.log('next button')
                 $('#imgContainer').children().eq(currentImgIndex).css('display','none')
@@ -45,12 +51,6 @@ $('form').on('submit',(event) => {
                 $('#imgContainer').children().eq(currentImgIndex).css('display','block')
                 console.log(currentImgIndex)
             });
-            $('body').append('<img class=acid src="https://i2.wp.com/rjwriting.ink/wp-content/uploads/2020/05/img_1250.png?w=1334&ssl=1"/>')
-                $('.acid').droppable({
-                    drop: function() {
-                        $('#imgContainer').children().eq(currentImgIndex).remove()
-                    }
-                })
         }
     )
 })
