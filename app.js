@@ -1,8 +1,13 @@
 console.log('linked')
+
+
+
 $('form').on('submit',(event) => {
     event.preventDefault();
     $('#anotherDiv').css('display','flex')
     $('#imgContainer').empty()
+    $('#nextBtn').unbind('click')
+    $('#prevBtn').unbind('click')
     const userInput = $('input').val()
     // console.log(userInput)
 
@@ -10,26 +15,21 @@ $('form').on('submit',(event) => {
         url: 'https://rickandmortyapi.com/api/character/?name=' + userInput
     }).then(
         (data) => {
+            
+            for (let i = 0; i < data.results.length; i++) {
+                const $charBio = $('<div class=charBio style="display: none;">').draggable();
+                const $charName = $('<h2>')
+                $charName.html(data.results[i].name)
+                $charBio.html(`<img src="${data.results[i].image}">`)
+                $charBio.append($charName)
+                $('#imgContainer').append($charBio)
+                console.log(data.results[i].name)
+            }
+            
             let currentImgIndex=0;
             let highestIndex=$('.charBio').length-1;
+            $('#imgContainer').children().eq(currentImgIndex).css('display','block')
             
-            $('.acid').droppable({
-                drop: function() {
-                    $('#imgContainer').children().eq(currentImgIndex).remove()
-                    currentImgIndex++
-                    }
-                })
-            for (let i = 0; i < data.results.length; i++) {
-            const $charBio = $('<div class=charBio>')
-            const $charName = $('<h2>')
-            $charName.html(data.results[i].name)
-            $charBio.html(`<img src="${data.results[i].image}">`).draggable();
-            $charBio.append($charName)
-            $('#imgContainer').append($charBio)
-            console.log(data.results[i].name)
-            }
-
-
             $('#nextBtn').on('click',() => {
                 console.log('next button')
                 $('#imgContainer').children().eq(currentImgIndex).css('display','none')
@@ -51,6 +51,15 @@ $('form').on('submit',(event) => {
                 $('#imgContainer').children().eq(currentImgIndex).css('display','block')
                 console.log(currentImgIndex)
             });
+            $('.acid').droppable({
+                drop: function() {
+                    $('#imgContainer').children().eq(currentImgIndex).remove()
+                    console.log("================", currentImgIndex, highestIndex)
+                    currentImgIndex++
+                    highestIndex--
+                    $('#imgContainer').children().eq(currentImgIndex).css('display','block')
+                    }
+                })
         }
-    )
-})
+        )
+    })
